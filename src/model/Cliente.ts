@@ -4,7 +4,7 @@ import { DatabaseModel } from "./DatabaseModel.js";
 const database = new DatabaseModel().pool;
 
 class Cliente {
-  private idCliente: number = 0;
+  private idClientes: number = 0;
   private nome: string;
   private cpf: string;
   private dataNascimento: Date;
@@ -27,11 +27,11 @@ class Cliente {
 
   // Getters e Setters
   public getIdCliente(): number {
-    return this.idCliente;
+    return this.idClientes;
   }
 
   public setIdCliente(idCliente: number): void {
-    this.idCliente = idCliente;
+    this.idClientes = idCliente;
   }
 
   public getNome(): string {
@@ -77,7 +77,7 @@ class Cliente {
   static async listarClientes(): Promise<Array<Cliente> | null> {
     try {
       let listaDeClientes: Array<Cliente> = [];
-      const querySelectClientes = `SELECT * FROM Cliente;`;
+      const querySelectClientes = `SELECT * FROM clientes;`;
       const respostaBD = await database.query(querySelectClientes);
 
       respostaBD.rows.forEach((clienteBD) => {
@@ -101,10 +101,10 @@ class Cliente {
 
   static async cadastrarCliente(cliente: ClienteDTO): Promise<boolean> {
     try {
-      const queryInsertCliente = `INSERT INTO Cliente (nome, cpf, data_nascimento, telefone, email)
+      const queryInsertCliente = `INSERT INTO clientes (nome, cpf, data_nascimento, telefone, email)
             VALUES
             ($1, $2, $3, $4, $5)
-            RETURNING id_cliente;`;
+            RETURNING id_clientes;`;
 
       const respostaBD = await database.query(queryInsertCliente, [
         cliente.nome.toUpperCase(),
@@ -116,7 +116,7 @@ class Cliente {
 
       if (respostaBD.rows.length > 0) {
         console.info(
-          `Cliente cadastrado com sucesso. ID: ${respostaBD.rows[0].id_cliente}`
+          `Cliente cadastrado com sucesso. ID: ${respostaBD.rows[0].id_clientes}`
         );
         return true;
       }
@@ -130,7 +130,7 @@ class Cliente {
 
   static async listarCliente(cpf: string): Promise<Cliente | null> {
     try {
-      const querySelectCliente = `SELECT * FROM Cliente WHERE cpf = $1;`;
+      const querySelectCliente = `SELECT * FROM clientes WHERE cpf = $1;`;
       const respostaBD = await database.query(querySelectCliente, [cpf]);
 
       if (respostaBD.rowCount != 0) {
