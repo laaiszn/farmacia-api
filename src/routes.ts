@@ -5,7 +5,7 @@ import ClienteController from "./controller/ClienteController.js";
 const router = Router();
 
 router.get("/api", (req: Request, res: Response) => {
-    res.status(200).json({ mensagem: "Olá, seja bem-vindo!" });
+    res.status(200).json({ mensagem: "Olá, seja bem-vindo" });
 });
 
 
