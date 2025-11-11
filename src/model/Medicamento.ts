@@ -155,7 +155,7 @@ class Medicamento {
   static async cadastrarMedicamento(dados: any): Promise<boolean> {
     try {
       const queryInsert = `
-        INSERT INTO medicamentos (nome, fabricante, principio_ativo, data_validade, preco)
+        INSERT INTO medicamentos (nome, fabricante, principio_ativo, validade, preco)
         VALUES ($1, $2, $3, $4, $5);
       `;
       await database.query(queryInsert, [

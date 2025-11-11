@@ -17,9 +17,9 @@ class MedicamentoController extends Medicamento {
 
   static async novo(req: Request, res: Response): Promise<Response> {
     try {
-      const dadosRecebidosCliente = req.body;
-      const respostaModelo = await Medicamento.listarMedicamento(
-        dadosRecebidosCliente
+      const dadosRecebidosMedicamento = req.body;
+      const respostaModelo = await Medicamento.cadastrarMedicamento(
+        dadosRecebidosMedicamento
       );
 
       if (respostaModelo) {

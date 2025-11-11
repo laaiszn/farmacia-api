@@ -14,13 +14,13 @@ class Cliente {
   constructor(
     nome: string,
     cpf: string,
-    dataNascimento: Date,
+    data_nascimento: Date,
     telefone: string,
     email: string
   ) {
     this.nome = nome;
     this.cpf = cpf;
-    this.dataNascimento = dataNascimento;
+    this.dataNascimento = data_nascimento;
     this.telefone = telefone;
     this.email = email;
   }

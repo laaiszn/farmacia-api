@@ -41,7 +41,7 @@ class ClienteController extends Cliente {
     try {
       const cpf = req.params.cpf as string;
 
-      if (cpf.length < 14) {
+      if (cpf.length < 11) {
         return res.status(400).json({ mensagem: "CPF inválido." });
       }
 
